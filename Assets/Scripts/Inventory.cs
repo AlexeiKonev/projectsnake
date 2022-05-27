@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour  ,IBodyAttachble
 
     [SerializeField] 
     Text textBodyLeftTime;
-
+  private  Body body;
     private void Awake()
     {
         _snakeControll = GameObject.Find("Head").GetComponent<SnakeControll>();
@@ -35,6 +35,7 @@ public class Inventory : MonoBehaviour  ,IBodyAttachble
 
     private void Update()
     {
+        body = FindObjectOfType<Body>();
         textSpeedBonus.text = speedBonus.ToString();
         textBodyBonus.text = bodyBonus.ToString();
          
@@ -81,7 +82,7 @@ public class Inventory : MonoBehaviour  ,IBodyAttachble
 
         if(_timeBonusIsActive)
         {
-            
+            body.isActiveAddTimeBonus = true;
             _timeBonusIsActive = false;
         }
 

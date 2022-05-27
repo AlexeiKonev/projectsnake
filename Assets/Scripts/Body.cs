@@ -8,14 +8,25 @@ public class Body : MonoBehaviour
     [SerializeField]
   private  bool _isAlive = true;  
     [SerializeField]
-  private  bool _isActiveDeathTimer = false; 
-  public  bool isActiveDeathTimer { get { return _isActiveDeathTimer; } }
+  private  bool _isActiveDeathTimer = false;
     [SerializeField]
-  private  bool _isActiveSlowTimeBonus = false;
+    private bool _isActiveSlowTimeBonus = false;
+    public bool isActiveDeathTimer
+    {
+        get { return _isActiveDeathTimer; }
+        set { _isActiveDeathTimer = value; }
+    }
+ 
     [SerializeField]
-  private  bool _isActiveAddTimeBonus = false;
-    [SerializeField]
-  private float _lifeTime = 15;
+    private  bool _isActiveAddTimeBonus = false;
+    public bool isActiveAddTimeBonus
+    {
+        get { return _isActiveAddTimeBonus; }
+        set { _isActiveAddTimeBonus = value; }
+    }
+    
+        [SerializeField]
+  private float _lifeTime = 45;
   public float lifeTime { get { return _lifeTime; } }
 
     private void Awake()
@@ -25,8 +36,13 @@ public class Body : MonoBehaviour
     private void Update()
     {
         //LifeTimer();
-        //AddTime();
-        //DestroyBody();
+        AddTime();
+        DestroyBody();
+    }
+    private void FixedUpdate()
+    {
+
+        LifeTimer();
     }
 
     private  void AddTime() 
@@ -37,31 +53,18 @@ public class Body : MonoBehaviour
             _isActiveAddTimeBonus = false;
         }
     }
-  private void LifeTimer()
+    private void LifeTimer()
     {
-        if (_isActiveDeathTimer)
+
+        _lifeTime -= 0.1f;
+
+        if (_lifeTime <= 0)
         {
-            while (_lifeTime > 0) 
-            { 
-                _lifeTime -= Time.deltaTime; 
-            }
-                 
-             
-        }
-        if (lifeTime <= 0)
-        {
+            _isActiveDeathTimer = false;
+
             _isAlive = false;
         }
 
-        if ( _isActiveSlowTimeBonus && _isActiveDeathTimer)
-        {
-            while (_lifeTime > 0)
-            {
-                _lifeTime -= Time.deltaTime / 2;
-            }
-        }
-        
-        
     }
 
    private void DestroyBody()

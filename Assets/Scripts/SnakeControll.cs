@@ -13,7 +13,7 @@ public class SnakeControll : MonoBehaviour,IMovable,IBodyAttachble
         private GameObject _prefabBody;
 
         [SerializeField]
-        private float _speed = 80f;
+        private float _speed = 120f;
 
         [SerializeField]
          private GameObject _head;

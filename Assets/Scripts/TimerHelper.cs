@@ -12,19 +12,24 @@ public class TimerHelper : MonoBehaviour
     private float _currentTimer;
     [SerializeField]
     bool timerAttached = false;
-     
+    SnakeControll snake;
     void Awake()
     {
-        //_textBodyLeftTime =GameObject.Find("counttime"). GetComponent<Text>();
+        snake = FindObjectOfType<SnakeControll>();
+         _textBodyLeftTime =GameObject.Find("counttime"). GetComponent<Text>();
 
         
     }
 
+    private void FixedUpdate()
+    {
 
-    void Update()
+       _currentTimer= snake.NewBody.GetComponent<Body>().lifeTime;
+    }
+    void  Update()
     {
        
-        //_textBodyLeftTime.text = _currentTimer.ToString();
+         _textBodyLeftTime.text = _currentTimer.ToString();
     }
      
 }

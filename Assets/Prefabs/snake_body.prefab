@@ -194,4 +194,4 @@ MonoBehaviour:
   _isActiveDeathTimer: 0
   _isActiveSlowTimeBonus: 0
   _isActiveAddTimeBonus: 0
-  _lifeTime: 50
+  _lifeTime: 15
